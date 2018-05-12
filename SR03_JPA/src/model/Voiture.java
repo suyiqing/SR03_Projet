@@ -19,15 +19,32 @@ public class Voiture implements Serializable {
 
 	private int annee;
 
-	private String couleur;
+	private String coffre;
 
 	private String marque;
 
 	private String modele;
 
-	//bi-directional many-to-one association to PrixTotal
+	private String portes;
+
+	@Column(name="prix_base")
+	private int prixBase;
+
+	//bi-directional many-to-one association to BoiteVitesse
 	@OneToMany(mappedBy="voitureBean")
-	private List<PrixTotal> prixTotals;
+	private List<BoiteVitesse> boiteVitesses;
+
+	//bi-directional many-to-one association to Couleur
+	@OneToMany(mappedBy="voitureBean")
+	private List<Couleur> couleurs;
+
+	//bi-directional many-to-one association to Finition
+	@OneToMany(mappedBy="voitureBean")
+	private List<Finition> finitions;
+
+	//bi-directional many-to-one association to Motorisation
+	@OneToMany(mappedBy="voitureBean")
+	private List<Motorisation> motorisations;
 
 	public Voiture() {
 	}
@@ -48,12 +65,12 @@ public class Voiture implements Serializable {
 		this.annee = annee;
 	}
 
-	public String getCouleur() {
-		return this.couleur;
+	public String getCoffre() {
+		return this.coffre;
 	}
 
-	public void setCouleur(String couleur) {
-		this.couleur = couleur;
+	public void setCoffre(String coffre) {
+		this.coffre = coffre;
 	}
 
 	public String getMarque() {
@@ -72,26 +89,108 @@ public class Voiture implements Serializable {
 		this.modele = modele;
 	}
 
-	public List<PrixTotal> getPrixTotals() {
-		return this.prixTotals;
+	public String getPortes() {
+		return this.portes;
 	}
 
-	public void setPrixTotals(List<PrixTotal> prixTotals) {
-		this.prixTotals = prixTotals;
+	public void setPortes(String portes) {
+		this.portes = portes;
 	}
 
-	public PrixTotal addPrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().add(prixTotal);
-		prixTotal.setVoitureBean(this);
-
-		return prixTotal;
+	public int getPrixBase() {
+		return this.prixBase;
 	}
 
-	public PrixTotal removePrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().remove(prixTotal);
-		prixTotal.setVoitureBean(null);
+	public void setPrixBase(int prixBase) {
+		this.prixBase = prixBase;
+	}
 
-		return prixTotal;
+	public List<BoiteVitesse> getBoiteVitesses() {
+		return this.boiteVitesses;
+	}
+
+	public void setBoiteVitesses(List<BoiteVitesse> boiteVitesses) {
+		this.boiteVitesses = boiteVitesses;
+	}
+
+	public BoiteVitesse addBoiteVitess(BoiteVitesse boiteVitess) {
+		getBoiteVitesses().add(boiteVitess);
+		boiteVitess.setVoitureBean(this);
+
+		return boiteVitess;
+	}
+
+	public BoiteVitesse removeBoiteVitess(BoiteVitesse boiteVitess) {
+		getBoiteVitesses().remove(boiteVitess);
+		boiteVitess.setVoitureBean(null);
+
+		return boiteVitess;
+	}
+
+	public List<Couleur> getCouleurs() {
+		return this.couleurs;
+	}
+
+	public void setCouleurs(List<Couleur> couleurs) {
+		this.couleurs = couleurs;
+	}
+
+	public Couleur addCouleur(Couleur couleur) {
+		getCouleurs().add(couleur);
+		couleur.setVoitureBean(this);
+
+		return couleur;
+	}
+
+	public Couleur removeCouleur(Couleur couleur) {
+		getCouleurs().remove(couleur);
+		couleur.setVoitureBean(null);
+
+		return couleur;
+	}
+
+	public List<Finition> getFinitions() {
+		return this.finitions;
+	}
+
+	public void setFinitions(List<Finition> finitions) {
+		this.finitions = finitions;
+	}
+
+	public Finition addFinition(Finition finition) {
+		getFinitions().add(finition);
+		finition.setVoitureBean(this);
+
+		return finition;
+	}
+
+	public Finition removeFinition(Finition finition) {
+		getFinitions().remove(finition);
+		finition.setVoitureBean(null);
+
+		return finition;
+	}
+
+	public List<Motorisation> getMotorisations() {
+		return this.motorisations;
+	}
+
+	public void setMotorisations(List<Motorisation> motorisations) {
+		this.motorisations = motorisations;
+	}
+
+	public Motorisation addMotorisation(Motorisation motorisation) {
+		getMotorisations().add(motorisation);
+		motorisation.setVoitureBean(this);
+
+		return motorisation;
+	}
+
+	public Motorisation removeMotorisation(Motorisation motorisation) {
+		getMotorisations().remove(motorisation);
+		motorisation.setVoitureBean(null);
+
+		return motorisation;
 	}
 
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -16,18 +17,30 @@ public class Finition implements Serializable {
 	@Id
 	private int idFinition;
 
-	private String bluetooth;
+	private String jante;
 
-	private String climatisation;
+	@Column(name="nom_finition")
+	private String nomFinition;
 
-	@Column(name="leve_vitre")
-	private String leveVitre;
+	@Column(name="prix_finition")
+	private int prixFinition;
 
-	private String navigation;
+	//bi-directional many-to-one association to AutoClimatiseur
+	@OneToMany(mappedBy="finitionBean")
+	private List<AutoClimatiseur> autoClimatiseurs;
 
-	private String radio;
+	//bi-directional many-to-one association to Voiture
+	@ManyToOne
+	@JoinColumn(name="voiture")
+	private Voiture voitureBean;
 
-	private String siege;
+	//bi-directional many-to-one association to Navigateur
+	@OneToMany(mappedBy="finitionBean")
+	private List<Navigateur> navigateurs;
+
+	//bi-directional many-to-one association to SiegeCuir
+	@OneToMany(mappedBy="finitionBean")
+	private List<SiegeCuir> siegeCuirs;
 
 	public Finition() {
 	}
@@ -40,52 +53,102 @@ public class Finition implements Serializable {
 		this.idFinition = idFinition;
 	}
 
-	public String getBluetooth() {
-		return this.bluetooth;
+	public String getJante() {
+		return this.jante;
 	}
 
-	public void setBluetooth(String bluetooth) {
-		this.bluetooth = bluetooth;
+	public void setJante(String jante) {
+		this.jante = jante;
 	}
 
-	public String getClimatisation() {
-		return this.climatisation;
+	public String getNomFinition() {
+		return this.nomFinition;
 	}
 
-	public void setClimatisation(String climatisation) {
-		this.climatisation = climatisation;
+	public void setNomFinition(String nomFinition) {
+		this.nomFinition = nomFinition;
 	}
 
-	public String getLeveVitre() {
-		return this.leveVitre;
+	public int getPrixFinition() {
+		return this.prixFinition;
 	}
 
-	public void setLeveVitre(String leveVitre) {
-		this.leveVitre = leveVitre;
+	public void setPrixFinition(int prixFinition) {
+		this.prixFinition = prixFinition;
 	}
 
-	public String getNavigation() {
-		return this.navigation;
+	public List<AutoClimatiseur> getAutoClimatiseurs() {
+		return this.autoClimatiseurs;
 	}
 
-	public void setNavigation(String navigation) {
-		this.navigation = navigation;
+	public void setAutoClimatiseurs(List<AutoClimatiseur> autoClimatiseurs) {
+		this.autoClimatiseurs = autoClimatiseurs;
 	}
 
-	public String getRadio() {
-		return this.radio;
+	public AutoClimatiseur addAutoClimatiseur(AutoClimatiseur autoClimatiseur) {
+		getAutoClimatiseurs().add(autoClimatiseur);
+		autoClimatiseur.setFinitionBean(this);
+
+		return autoClimatiseur;
 	}
 
-	public void setRadio(String radio) {
-		this.radio = radio;
+	public AutoClimatiseur removeAutoClimatiseur(AutoClimatiseur autoClimatiseur) {
+		getAutoClimatiseurs().remove(autoClimatiseur);
+		autoClimatiseur.setFinitionBean(null);
+
+		return autoClimatiseur;
 	}
 
-	public String getSiege() {
-		return this.siege;
+	public Voiture getVoitureBean() {
+		return this.voitureBean;
 	}
 
-	public void setSiege(String siege) {
-		this.siege = siege;
+	public void setVoitureBean(Voiture voitureBean) {
+		this.voitureBean = voitureBean;
+	}
+
+	public List<Navigateur> getNavigateurs() {
+		return this.navigateurs;
+	}
+
+	public void setNavigateurs(List<Navigateur> navigateurs) {
+		this.navigateurs = navigateurs;
+	}
+
+	public Navigateur addNavigateur(Navigateur navigateur) {
+		getNavigateurs().add(navigateur);
+		navigateur.setFinitionBean(this);
+
+		return navigateur;
+	}
+
+	public Navigateur removeNavigateur(Navigateur navigateur) {
+		getNavigateurs().remove(navigateur);
+		navigateur.setFinitionBean(null);
+
+		return navigateur;
+	}
+
+	public List<SiegeCuir> getSiegeCuirs() {
+		return this.siegeCuirs;
+	}
+
+	public void setSiegeCuirs(List<SiegeCuir> siegeCuirs) {
+		this.siegeCuirs = siegeCuirs;
+	}
+
+	public SiegeCuir addSiegeCuir(SiegeCuir siegeCuir) {
+		getSiegeCuirs().add(siegeCuir);
+		siegeCuir.setFinitionBean(this);
+
+		return siegeCuir;
+	}
+
+	public SiegeCuir removeSiegeCuir(SiegeCuir siegeCuir) {
+		getSiegeCuirs().remove(siegeCuir);
+		siegeCuir.setFinitionBean(null);
+
+		return siegeCuir;
 	}
 
 }

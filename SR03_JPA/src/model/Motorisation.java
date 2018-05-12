@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -17,11 +16,15 @@ public class Motorisation implements Serializable {
 	@Id
 	private int idMotorisation;
 
-	private String carburant;
+	private String motorisation;
 
-	//bi-directional many-to-one association to PrixTotal
-	@OneToMany(mappedBy="motorisationBean")
-	private List<PrixTotal> prixTotals;
+	@Column(name="prix_motorisation")
+	private int prixMotorisation;
+
+	//bi-directional many-to-one association to Voiture
+	@ManyToOne
+	@JoinColumn(name="voiture")
+	private Voiture voitureBean;
 
 	public Motorisation() {
 	}
@@ -34,34 +37,28 @@ public class Motorisation implements Serializable {
 		this.idMotorisation = idMotorisation;
 	}
 
-	public String getCarburant() {
-		return this.carburant;
+	public String getMotorisation() {
+		return this.motorisation;
 	}
 
-	public void setCarburant(String carburant) {
-		this.carburant = carburant;
+	public void setMotorisation(String motorisation) {
+		this.motorisation = motorisation;
 	}
 
-	public List<PrixTotal> getPrixTotals() {
-		return this.prixTotals;
+	public int getPrixMotorisation() {
+		return this.prixMotorisation;
 	}
 
-	public void setPrixTotals(List<PrixTotal> prixTotals) {
-		this.prixTotals = prixTotals;
+	public void setPrixMotorisation(int prixMotorisation) {
+		this.prixMotorisation = prixMotorisation;
 	}
 
-	public PrixTotal addPrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().add(prixTotal);
-		prixTotal.setMotorisationBean(this);
-
-		return prixTotal;
+	public Voiture getVoitureBean() {
+		return this.voitureBean;
 	}
 
-	public PrixTotal removePrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().remove(prixTotal);
-		prixTotal.setMotorisationBean(null);
-
-		return prixTotal;
+	public void setVoitureBean(Voiture voitureBean) {
+		this.voitureBean = voitureBean;
 	}
 
 }

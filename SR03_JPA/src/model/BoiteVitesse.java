@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -15,53 +14,51 @@ public class BoiteVitesse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idBoiteV;
+	private int idBoiteVitesse;
 
-	private String boitev;
+	private String boitevitesse;
 
-	//bi-directional many-to-one association to PrixTotal
-	@OneToMany(mappedBy="boiteVitesse")
-	private List<PrixTotal> prixTotals;
+	@Column(name="prix_boitevitesse")
+	private int prixBoitevitesse;
+
+	//bi-directional many-to-one association to Voiture
+	@ManyToOne
+	@JoinColumn(name="voiture")
+	private Voiture voitureBean;
 
 	public BoiteVitesse() {
 	}
 
-	public int getIdBoiteV() {
-		return this.idBoiteV;
+	public int getIdBoiteVitesse() {
+		return this.idBoiteVitesse;
 	}
 
-	public void setIdBoiteV(int idBoiteV) {
-		this.idBoiteV = idBoiteV;
+	public void setIdBoiteVitesse(int idBoiteVitesse) {
+		this.idBoiteVitesse = idBoiteVitesse;
 	}
 
-	public String getBoitev() {
-		return this.boitev;
+	public String getBoitevitesse() {
+		return this.boitevitesse;
 	}
 
-	public void setBoitev(String boitev) {
-		this.boitev = boitev;
+	public void setBoitevitesse(String boitevitesse) {
+		this.boitevitesse = boitevitesse;
 	}
 
-	public List<PrixTotal> getPrixTotals() {
-		return this.prixTotals;
+	public int getPrixBoitevitesse() {
+		return this.prixBoitevitesse;
 	}
 
-	public void setPrixTotals(List<PrixTotal> prixTotals) {
-		this.prixTotals = prixTotals;
+	public void setPrixBoitevitesse(int prixBoitevitesse) {
+		this.prixBoitevitesse = prixBoitevitesse;
 	}
 
-	public PrixTotal addPrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().add(prixTotal);
-		prixTotal.setBoiteVitesse(this);
-
-		return prixTotal;
+	public Voiture getVoitureBean() {
+		return this.voitureBean;
 	}
 
-	public PrixTotal removePrixTotal(PrixTotal prixTotal) {
-		getPrixTotals().remove(prixTotal);
-		prixTotal.setBoiteVitesse(null);
-
-		return prixTotal;
+	public void setVoitureBean(Voiture voitureBean) {
+		this.voitureBean = voitureBean;
 	}
 
 }
