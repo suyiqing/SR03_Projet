@@ -1,0 +1,95 @@
+
+span {
+	font-size: 150%;
+	margin: 40px 20px;
+}
+
+.jante {
+	font-size: 125%;
+}
+
+.price {
+	position: absolute;
+	top: 400px; 
+	right: 70px;
+}
+
+.marque {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}
+
+.choisirmarque {
+	margin: 40px 40px;
+	width: 150px;
+}
+
+.choisirmodele {
+	margin: 40px 40px;
+	width: 150px;
+}
+
+.moto {
+	position: absolute;
+	left: 100px;
+	top: 170px;
+}
+
+.motorisation {
+	margin : 40px 40px;
+	width: 150px;
+}
+
+.vitesse {
+	position: absolute;
+	left: 100px;
+	top: 240px;
+}
+
+.boitevitesse {
+	margin: 40px 40px;
+	width: 150px;
+}
+
+.color {
+	position: absolute;
+	left: 100px;
+	top: 310px;
+}
+
+.couleur {
+	margin: 40px 40px;
+	width: 150px;
+}
+
+.fini {
+	position: absolute;
+	left: 100px;
+	top: 380px;
+}
+
+.finition {
+	margin: 40px 20px;
+	width: 150px;
+}
+
+.opt {
+	position: absolute;
+	left: 100px;
+	top: 480px;
+}
+
+.options {
+	margin: 40px 40px;
+}
+
+.select1 {
+	margin: 40px 40px;
+}
+
+
+
+
+
+}

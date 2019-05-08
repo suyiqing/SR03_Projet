@@ -1,5 +1,7 @@
 package sr03.utc.fr;
 
+//import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -17,9 +19,64 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 
 public class MyWS {
-	
 	@EJB
 	private RequeteLocal voiture;
+
+	@GET
+	@Path("/voitures")
+    public Response getVoiture()
+    {
+		return Response.ok(this.voiture.getVoitures()).build();
+    }
+	
+	@GET
+	@Path("/getMotorisationByVoiture")
+    public Response getMotorisationByVoiture(@QueryParam("vid") int vid)
+    {
+		return Response.ok(this.voiture.getMotorisationByVoiture(vid)).build();
+    }
+	
+	@GET
+	@Path("/getBoiteVitesseByVoiture")
+    public Response getBoiteVitesseByVoiture(@QueryParam("vid") int vid)
+    {
+		return Response.ok(this.voiture.getBoiteVitesseByVoiture(vid)).build();
+    }
+	
+	@GET
+	@Path("/getCouleurByVoiture")
+    public Response getCouleurByVoiture(@QueryParam("vid") int vid)
+    {
+		return Response.ok(this.voiture.getCouleurByVoiture(vid)).build();
+    }
+	
+	@GET
+	@Path("/getFinitionByVoiture")
+    public Response getFinitionByVoiture(@QueryParam("vid") int vid)
+    {
+		return Response.ok(this.voiture.getFinitionByVoiture(vid)).build();
+    }
+	
+	@GET
+	@Path("/getAcByFinition")
+    public Response getAcByFinition(@QueryParam("fid") int fid)
+    {
+		return Response.ok(this.voiture.getAcByFinition(fid)).build();
+    }
+	
+	@GET
+	@Path("/getNaviByFinition")
+    public Response getNaviByFinition(@QueryParam("fid") int fid)
+    {
+		return Response.ok(this.voiture.getNaviByFinition(fid)).build();
+    }
+	
+	
+	
+	
+	
+	
+	// ------------- pas utilise ------------------
 	
 	@GET
 	@Path("/finitions")
@@ -49,7 +106,19 @@ public class MyWS {
 		return Response.ok(this.voiture.getCouleurs()).build();
     }
 	
+	@GET
+	@Path("/getBoiteVitesseByMotorisation")
+    public Response getBoiteVitesseByMotorisation(@QueryParam("mid") int mid)
+    {
+		return Response.ok(this.voiture.getBoiteVitesseByMotorisation(mid)).build();
+    }
 	
+	@GET
+	@Path("/getMotorisationByBoiteVitesse")
+    public Response getMotorisationByBoiteVitesse(@QueryParam("bvid") int bvid)
+    {
+		return Response.ok(this.voiture.getMotorisationByBoiteVitesse(bvid)).build();
+    }
 	
 	@GET
 	@Path("/getVoitureByMotorisation")
@@ -59,21 +128,25 @@ public class MyWS {
     }
 	
 	@GET
-	@Path("/getBoiteVitesseByMotorisation")
-    public Response getBoiteVitesseByMotorisation(@QueryParam("mid") int mid)
+	@Path("/getVoitureByBoiteVitesse")
+    public Response getVoitureByBoiteVitesse(@QueryParam("bvid") int bvid)
     {
-		return Response.ok(this.voiture.getBoiteVitesseByMotorisation(mid)).build();
+		return Response.ok(this.voiture.getVoitureByBoiteVitesse(bvid)).build();
     }
 	
-	
-	
+	@GET
+	@Path("/getScByFinition")
+    public Response getScByFinition(@QueryParam("fid") int fid)
+    {
+		return Response.ok(this.voiture.getScByFinition(fid)).build();
+    }
 	
 	@GET
 	@Path("/getVoitureByPrixbase")
-    public Response getVoitureByPrixTotal(@QueryParam("pmin") int pmin, @QueryParam("pmax") int pmax)
+    public Response getVoitureByPrixbase(@QueryParam("pmin") int pmin, @QueryParam("pmax") int pmax)
     {
 		return Response.ok(this.voiture.getVoitureByPrixbase(pmin, pmax)).build();
     }
-
+	
 	
 }

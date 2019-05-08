@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -26,19 +29,23 @@ public class Finition implements Serializable {
 	private int prixFinition;
 
 	//bi-directional many-to-one association to AutoClimatiseur
+	@JsonIgnore
 	@OneToMany(mappedBy="finitionBean")
 	private List<AutoClimatiseur> autoClimatiseurs;
 
 	//bi-directional many-to-one association to Voiture
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="voiture")
 	private Voiture voitureBean;
 
 	//bi-directional many-to-one association to Navigateur
+	@JsonIgnore
 	@OneToMany(mappedBy="finitionBean")
 	private List<Navigateur> navigateurs;
 
 	//bi-directional many-to-one association to SiegeCuir
+	@JsonIgnore
 	@OneToMany(mappedBy="finitionBean")
 	private List<SiegeCuir> siegeCuirs;
 

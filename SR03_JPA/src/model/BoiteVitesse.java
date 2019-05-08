@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the BoiteVitesse database table.
@@ -22,6 +24,7 @@ public class BoiteVitesse implements Serializable {
 	private int prixBoitevitesse;
 
 	//bi-directional many-to-one association to Voiture
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="voiture")
 	private Voiture voitureBean;

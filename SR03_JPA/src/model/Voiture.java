@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -31,18 +34,22 @@ public class Voiture implements Serializable {
 	private int prixBase;
 
 	//bi-directional many-to-one association to BoiteVitesse
+	@JsonIgnore
 	@OneToMany(mappedBy="voitureBean")
 	private List<BoiteVitesse> boiteVitesses;
 
 	//bi-directional many-to-one association to Couleur
+	@JsonIgnore
 	@OneToMany(mappedBy="voitureBean")
 	private List<Couleur> couleurs;
 
 	//bi-directional many-to-one association to Finition
+	@JsonIgnore
 	@OneToMany(mappedBy="voitureBean")
 	private List<Finition> finitions;
 
 	//bi-directional many-to-one association to Motorisation
+	@JsonIgnore
 	@OneToMany(mappedBy="voitureBean")
 	private List<Motorisation> motorisations;
 

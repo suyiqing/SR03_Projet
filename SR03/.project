@@ -3,10 +3,11 @@
 	<name>SR03</name>
 	<comment></comment>
 	<projects>
-		<project>SR03_JPA</project>
-		<project>SR03_REST</project>
 		<project>SR03_EJB</project>
 		<project>SR03_EJBClient</project>
+		<project>SR03_JPA</project>
+		<project>SR03_REST</project>
+		<project>SR03_WEB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

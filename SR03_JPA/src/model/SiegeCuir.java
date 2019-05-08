@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the SiegeCuir database table.
@@ -22,6 +24,7 @@ public class SiegeCuir implements Serializable {
 	private byte siegeCuir;
 
 	//bi-directional many-to-one association to Finition
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="finition")
 	private Finition finitionBean;

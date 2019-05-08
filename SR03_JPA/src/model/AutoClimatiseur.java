@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the AutoClimatiseur database table.
@@ -21,6 +23,7 @@ public class AutoClimatiseur implements Serializable {
 	private int prix;
 
 	//bi-directional many-to-one association to Finition
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="finition")
 	private Finition finitionBean;
